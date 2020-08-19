@@ -22,7 +22,15 @@ export class NavComponent implements OnInit {
       this.mostarGraper(true);
       let us:Promise<Usuario>= this.dbSer.getUsrUID(usr.uid);
       this.storage.set('uid',usr.uid)
+      console.log('uid',usr.uid);
       //this.storage.set('Usuario',it);
+      console.log('usuario error',(await us).Rol,us);
+      try {
+        this.Rol=(await us).Rol;
+      this.nombre=(await us).Email;
+      } catch (error) {
+        console.log(error);
+      }
       this.Rol=(await us).Rol;
       this.nombre=(await us).Email;
       if(this.Rol=='CLIENTE'){

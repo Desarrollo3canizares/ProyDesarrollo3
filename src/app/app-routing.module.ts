@@ -9,6 +9,7 @@ import {ListaRepartidorComponent} from './pages/lista-repartidor/lista-repartido
 import {DetalleEntRepartidorComponent} from './pages/detalle-ent-repartidor/detalle-ent-repartidor.component';
 import {ProductosComponent} from './pages/productos/productos.component';
 import {RepartidoresComponent} from './pages/repartidores/repartidores.component';
+import {ResumenComponent} from './pages/resumen/resumen.component';
 const routes: Routes = [
   
   { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule) },
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'DetalleEntrega/:id',component:DetalleEntRepartidorComponent},
   {path:'Productos',component:ProductosComponent},
   {path:'Repartidores',component:RepartidoresComponent},
+  {path:'Resumen',component:ResumenComponent},
   ];
 
 @NgModule({

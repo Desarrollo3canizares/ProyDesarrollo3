@@ -28,6 +28,7 @@ import { AsignarPedidosAdminComponent } from './pages/asignar-pedidos-admin/asig
 import { ListProductosAdminComponent } from './pages/list-productos-admin/list-productos-admin.component';
 import { ProductosComponent } from './pages/productos/productos.component';
 import { RepartidoresComponent } from './pages/repartidores/repartidores.component';
+import { ResumenComponent } from './pages/resumen/resumen.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RepartidoresComponent } from './pages/repartidores/repartidores.compone
     AsignarPedidosAdminComponent,
     ListProductosAdminComponent,
     ProductosComponent,
-    RepartidoresComponent
+    RepartidoresComponent,
+    ResumenComponent
   ],
   imports: [
     BrowserModule,

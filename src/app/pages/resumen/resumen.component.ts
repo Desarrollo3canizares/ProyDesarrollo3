@@ -7,13 +7,15 @@ import { RealtimeDBSerService } from 'src/app/services/realtime-dbser.service';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Usuario } from '../../Modelos/UsuarioDB';
 import { Router } from '@angular/router';
-@Component({
-  selector: 'app-list-pedidos-admin',
-  templateUrl: './list-pedidos-admin.component.html',
-  styleUrls: ['./list-pedidos-admin.component.css']
-})
-export class ListPedidosAdminComponent implements OnInit {
 
+@Component({
+  selector: 'app-resumen',
+  templateUrl: './resumen.component.html',
+  styleUrls: ['./resumen.component.css']
+})
+export class ResumenComponent implements OnInit {
+
+ 
   items$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
   size$: BehaviorSubject<string | null>;
   uid;
@@ -43,38 +45,46 @@ export class ListPedidosAdminComponent implements OnInit {
     this.filtrar('');
 
   }
-  filtrar(est: string) {
+  filtrar(IdProducto: string) {
     this.items$.subscribe(queriedItems => {
       console.log(queriedItems);
       this.listFiltrada = [];
       for (let index = 0; index < queriedItems.length; index++) {
-        let a = {
-          User: this.dbSer.getUsrUID(queriedItems[index].payload.val().Uid),
-          data: queriedItems[index]
-        }
-        if (est.length != 0) {
-
-
-          if (queriedItems[index].payload.val().Estado == est) {
-
-            this.listFiltrada.push(a);
+        //queriedItems[index].payload.val().Estado
+        let lProductos=queriedItems[index].payload.val().Productos;
+        console.log('productos',lProductos);
+          for(let i=0;i<lProductos.length;i++){
+            console.log('for lpro',lProductos[i]);
+              this.añadir(lProductos[i]);
+            
+            
           }
-        } else {
-          
-            this.listFiltrada.push(a);
-          
-          
-        }
+
         // this.listFiltrada.push(a);
 
 
       }
-      console.log(this.listFiltrada);
+      console.log('filtrada',this.listFiltrada);
     });
 
+  }
+  total=0;
+  añadir(p){
+    console.log('p',p)
+    for(let i=0;i<this.listFiltrada.length;i++){
+      if(this.listFiltrada[i].Id==p.Id){
+        this.listFiltrada[i].Cantidad+=p.Cantidad;
+        this.listFiltrada[i].subTotal+=p.subTotal;
+        this.total+=p.subTotal;
+        return;
+      }
+    }
+    this.listFiltrada.push(p);
+    this.total+=p.subTotal;
   }
   filterBy(size: string | null) {
     this.size$.next(size);
   }
+
 
 }

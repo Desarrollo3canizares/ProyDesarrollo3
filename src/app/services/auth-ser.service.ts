@@ -5,7 +5,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 //import {User} from 'firebase';
 import {User} from '../Modelos/Usuario';
 
-import {RoleValidator} from '../Modelos/RoleValidatos'
+import {RoleValidator} from '../Modelos/RoleValidatos';
 import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'

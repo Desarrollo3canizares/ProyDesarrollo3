@@ -20,7 +20,7 @@ export class RepartidoresComponent implements OnInit {
   itemsRef: AngularFireList<any>;
   items: Observable<any[]>;
   itemEdit;
-  constructor(db: AngularFireDatabase,
+  constructor(public db: AngularFireDatabase,
     private authSer:AuthSerService,
     @Inject(SESSION_STORAGE) private storage: StorageService,
   public dbSer: RealtimeDBSerService,public router: Router) {
@@ -63,8 +63,10 @@ export class RepartidoresComponent implements OnInit {
           
           if (user) {
             usr.UID=user.uid;
-            this.itemsRef.push(usr);
+            let  itemRefU= this.db.object('Usuarios/'+usr.UID);
+            itemRefU.set(usr);
             $('#myModal').modal('hide');
+            this.authSer.sendVerificationEmail();
             this.limpiar();
           }
         } catch (error) {
