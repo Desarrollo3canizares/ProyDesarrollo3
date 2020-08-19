@@ -117,8 +117,16 @@
               "devServerTarget": "ProyDesarrollo3:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
-  "defaultProject": "ProyDesarrollo3"
+    }
+  },
+  "defaultProject": "ProyDesarrollo3",
+  "cli": {
+    "analytics": "c01a1ca8-535d-45d0-887b-079ab6677ea1"
+  }
 }
